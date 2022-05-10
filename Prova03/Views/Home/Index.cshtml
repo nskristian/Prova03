@@ -1,0 +1,70 @@
+﻿@model Prova03.Models.DataModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <br />
+
+    <div class="container mt-3">
+        @using (Html.BeginForm())
+        {
+
+            <label>Data de nascimento:</label>
+            @Html.TextBoxFor(model => model.Data,
+                    new
+                    {
+                        @class = "form-control col-md-4",
+                        @placeholder = "Digite aqui",
+                        @type = "date"
+                    })
+            <br />
+            <input type="submit" class="btn btn-success" value="Enviar" />
+        }
+        <br />
+        <br />
+        @if (TempData["anos"] != null)
+        {
+            <div>
+                <p>Você tem @TempData["anos"] anos: </p>
+            </div>
+            <br />
+            <br />
+
+            @if (TempData["MensagemAniversario"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@TempData["MensagemAniversario"]</strong>
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+        }
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>@TempData["MensagemErro"]</strong>
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+    </div>
+
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/jquery-3.6.0.js"></script>
+</body>
+</html>
